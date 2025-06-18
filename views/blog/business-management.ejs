@@ -1,0 +1,118 @@
+<%- include('../partials/header.ejs') %>
+    <div class="container py-2">
+        <div class="col-lg-8">
+            <h1 class="display-4">Business & Management</h1>
+            <div class="border border-2 border-secondary w-15 my-4"></div>
+            <p class="lead">One stop destination for all my thoughts, ideas (& rants). I write about business, 
+            management practices, philosophy and random thought experiments. I'm always on the lookout for new
+            perspectives that challenge status quo.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Blog Section -->
+<div class="bg-white text-body-emphasis">
+    <section class="container-fluid pt-2 pb-5 pb-lg-6">
+        <h2 class="visually-hidden">Projects</h2>
+        <ul class="list-unstyled row row-cols-1 row-cols-sm-2 row-cols-xl-3 gx-0 gy-4 mt-n6 px-xl-4 mb-0">
+            <li class="col">
+                <figure class="img-scale">
+                    <div class="img-wrap mb-3">
+                        <img src="assets/img/villa-pool.jpg" width="800" height="800" alt="" class="img-fluid">
+                    </div>
+                    <figcaption class="h5 fw-normal">
+                    <a class="stretched-link link-body-emphasis" href="/project-1">Mediterranean Villa</a>
+                    </figcaption>
+                </figure>
+            </li>
+            <li class="col">
+                <figure class="img-scale">
+                    <div class="img-wrap mb-3">
+                    <img src="assets/img/modern-building.jpg" width="800" height="800" alt="" class="img-fluid">
+                    </div>
+                    <figcaption class="h5 fw-normal">
+                    <a class="link-body-emphasis stretched-link" href="/project-1">Modern Building</a>
+                    </figcaption>
+                </figure>
+            </li>
+            <li class="col">
+                <figure class="img-scale">
+                    <div class="img-wrap mb-3">
+                    <img src="assets/img/red-house.jpg" width="800" height="800" alt="" class="img-fluid">
+                    </div>
+                    <figcaption class="h5 fw-normal">
+                    <a class="link-body-emphasis stretched-link" href="/project-1">Wooden House</a>
+                    </figcaption>
+                </figure>
+            </li>
+            <li class="col">
+                <figure class="img-scale">
+                    <div class="img-wrap mb-3">
+                    <img src="assets/img/red-house.jpg" width="800" height="800" alt="" class="img-fluid">
+                    </div>
+                    <figcaption class="h5 fw-normal">
+                    <a class="link-body-emphasis stretched-link" href="/project-1">Wooden House</a>
+                    </figcaption>
+                </figure>
+            </li>
+            <li class="col">
+                <figure class="img-scale">
+                    <div class="img-wrap mb-3">
+                    <img src="assets/img/red-house.jpg" width="800" height="800" alt="" class="img-fluid">
+                    </div>
+                    <figcaption class="h5 fw-normal">
+                    <a class="link-body-emphasis stretched-link" href="/project-1">Wooden House</a>
+                    </figcaption>
+                </figure>
+            </li>
+            <li class="col">
+                <figure class="img-scale">
+                    <div class="img-wrap mb-3">
+                    <img src="assets/img/red-house.jpg" width="800" height="800" alt="" class="img-fluid">
+                    </div>
+                    <figcaption class="h5 fw-normal">
+                    <a class="link-body-emphasis stretched-link" href="/project-1">Wooden House</a>
+                    </figcaption>
+                </figure>
+            </li>
+        </ul>
+    </section>
+</div>
+
+<!-- Call to action -->
+<section class="secondary-background text-center">
+    <div class="container py-5 py-lg-6">
+        <h2 class="font-sans">Any comments?</h2>
+        <!-- <p class="lead">Connect with me to discuss further about <br> any of the above topics that interest you.</p>
+        <a href="#" class="btn btn-outline-light">E-Mail</a> -->
+        <form method="post" action="/blog/business-management/process-comments">
+            <div class="row justify-content-center">
+                <div class="col-md-4 ml-auto">
+                <input type="text" name="firstName" class="form-control" placeholder="First name">
+                </div>
+                <div class="col-md-4 mr-auto">
+                <input type="text" name="lastName" class="form-control" placeholder="Last name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                <input type="text" name="comment" class="form-control" placeholder="Comment">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+<!-- Comments Section -->
+    <% if (locals.array) { %>
+        <ul>
+            <% for( let index = 0; index < locals.array.length; index++ ) { %>
+                <li> <%= locals.array[index][0] %> <%= locals.array[index][1] %> says <%= locals.array[index][2]%></li>
+            <% } %>
+        </ul>
+    <% } %>
+
+</section>
+
+<%- include('../partials/footer.ejs') %>
