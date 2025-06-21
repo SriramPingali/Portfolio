@@ -1,16 +1,15 @@
 h1 {
     font-family: 'Raleway', sans-serif;
     font-weight: 500;
-    font-size: 2.5rem;
-    margin: 1.5rem 0;
+    font-size: 2rem;
+    margin: 0;
 }
 
 h2 {
     font-family: 'Lexend Giga', sans-serif;
     font-weight: 300;
     font-size: 1.5rem;
-    margin: 1rem 0;
-    color: 
+    margin: 0; 
 }
 
 h3 {
@@ -18,12 +17,13 @@ h3 {
     font-weight: 100;
     font-size: 1.5rem;
     font-style: italic;
+    margin: 0;
 }
 
 h1.text-large {
     font-size: 3.5rem;
+    margin: 1.5rem 0;
 }
-
 
 p {
     font-family: 'Source Sans 3', sans-serif;
@@ -36,9 +36,6 @@ p {
   width: 70%;
   flex-direction: column;
   justify-content: center;
-}
-
-.text-start {
   text-align: left;
 }
 
@@ -69,6 +66,7 @@ p {
 
 .slash-background .navbar .nav-link {
     color: #EEEEEE;
+    /* color: #D84040; */
 }
 
 .slash-background--short {
@@ -98,7 +96,6 @@ p {
 .circle-icon {
   position: absolute;
   top: 50%;
-  left: 50%;
   transform:
     rotate(calc(72deg * var(--i)))
     translate(150px)
@@ -119,7 +116,7 @@ p {
 
 /* When expanded (large screens), make text white */
 @media (max-width: 992px) {
-    .navbar .nav-link {
+    .slash-background .navbar .nav-link {
         color: #1D1616;
     }
 
@@ -213,4 +210,16 @@ animation: blink 0.7s infinite;
 
 .img-scale:hover img {
     transform: scale(1.1)
+}
+
+.cv-background {
+    background-color: #963a3a;
+    color: #EEEEEE;
+}
+
+.cv-box-background {
+    background-color: #FEF9E1;
+    padding: 1rem 1rem;
+    border-radius: 10px;
+    color: #222831;
 }

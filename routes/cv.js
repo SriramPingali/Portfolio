@@ -9,7 +9,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 // Example route handler, update as needed
 router.get('/', (req, res) => {
   res.render('cv.ejs', {
-    intro_bkg: "primary-background",
+    intro_bkg: "cv-background",
     currentPage: "cv"
   });
 });
