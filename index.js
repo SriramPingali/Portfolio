@@ -3,7 +3,6 @@ import bodyParser from "body-parser";
 import blogRouter from './routes/blog.js';
 import cvRouter from './routes/cv.js';
 // import projectRouter from './routes/projects.js';
-import personalRouter from './routes/personal.js';
 
 const app = express();
 const port = 3000;
@@ -25,4 +24,3 @@ app.get("/", (req, res) => {
 app.use('/blog', blogRouter);
 app.use('/cv', cvRouter);
 // app.use('/projects', projectRouter);
-app.use('/personal', personalRouter);

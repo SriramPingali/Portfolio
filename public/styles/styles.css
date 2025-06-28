@@ -217,9 +217,22 @@ animation: blink 0.7s infinite;
     color: #EEEEEE;
 }
 
-.cv-box-background {
+.cv-box {
     background-color: #FEF9E1;
-    padding: 1rem 1rem;
+    padding: 0.5rem 0.5rem;
     border-radius: 10px;
     color: #222831;
+}
+
+.cv-box figure {
+    margin: 0;
+    padding: 0;
+}
+
+.cv-box figure figcaption {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 0.5rem;
+  color: #963a3a;
 }
