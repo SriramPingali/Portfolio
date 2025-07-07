@@ -63,7 +63,7 @@ p {
 .primary-background .navbar .nav-link {
     color: #222831
 }
-
+ 
 .slash-background .navbar .nav-link {
     color: #EEEEEE;
 }
@@ -73,7 +73,8 @@ p {
 }
 
 .cv-background {
-    background-color: #963a3a;
+    background-color: #9bce95;
+    /* color: #73a16e */
     color: #EEEEEE;
 }
 
