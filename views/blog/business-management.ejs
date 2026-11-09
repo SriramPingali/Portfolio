@@ -80,39 +80,4 @@
     </section>
 </div>
 
-<!-- Call to action -->
-<section class="secondary-background text-center">
-    <div class="container py-5 py-lg-6">
-        <h2 class="font-sans">Any comments?</h2>
-        <!-- <p class="lead">Connect with me to discuss further about <br> any of the above topics that interest you.</p>
-        <a href="#" class="btn btn-outline-light">E-Mail</a> -->
-        <form method="post" action="/blog/business-management/process-comments">
-            <div class="row justify-content-center">
-                <div class="col-md-4 ml-auto">
-                <input type="text" name="firstName" class="form-control" placeholder="First name">
-                </div>
-                <div class="col-md-4 mr-auto">
-                <input type="text" name="lastName" class="form-control" placeholder="Last name">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                <input type="text" name="comment" class="form-control" placeholder="Comment">
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-
-<!-- Comments Section -->
-    <% if (locals.array) { %>
-        <ul>
-            <% for( let index = 0; index < locals.array.length; index++ ) { %>
-                <li> <%= locals.array[index][0] %> <%= locals.array[index][1] %> says <%= locals.array[index][2]%></li>
-            <% } %>
-        </ul>
-    <% } %>
-
-</section>
-
 <%- include('../partials/footer.ejs') %>
