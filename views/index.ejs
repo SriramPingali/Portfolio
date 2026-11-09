@@ -23,30 +23,127 @@
     </div>
 </div>
 
-<section id="about-me">
-<div class="container-fluid">
-    <div class="container px-5 pb-5">
-        <div class="row">
-            <div class="col-lg-6 d-flex justify-content-center align-items-center flex-column px-5 py-5 mt-5">
-                <div class="circle-container">
-                    <div class="rotating-ring">
-                        <div class="circle-icon" style="--i:0;"><img src="./images/logos/iitp_logo.jpg"></div>
-                        <div class="circle-icon" style="--i:1;"><img src="./images/logos/yellow_logo.png"></div>
-                        <div class="circle-icon" style="--i:2;"><img src="./images/logos/iimb_logo.png"></div>
-                        <div class="circle-icon" style="--i:3;"><img src="./images/logos/bcg_logo.png"></div>
-                        <div class="circle-icon" style="--i:4;"><img src="./images/logos/bain_logo.png"></div>
+<%
+    // ---- Deep Dive data: edit this to change the wheel, timeline and panels ----
+    const toolLogos = {
+        "Python": "Python.png", "PyTorch": "Pytorch.png", "R": "R.png", "SQL": "SQL.png",
+        "Excel": "excel.png", "PowerPoint": "PPT.png", "Power BI": "Powerbi.png", "Tableau": "Tableau Logo.png",
+        "Figma": "Figma Icon.png", "Google Analytics": "Google Analytics Logo.png",
+        "Sawtooth": "Sawtooth Logo Square.webp", "Enginius": "Enginius.jpeg"
+    };
+    // lane: "study" | "work";  start/end are decimal years (2022.5 = mid 2022); end:null means "present"
+    const aboutItems = [
+        { logo: "iitp_logo.jpg", kind: "Education", name: "IIT Patna",
+          role: "B.Tech, Computer Science", period: "2018 – 2022 · 4 years", lane: "study", start: 2018.6, end: 2022.5,
+          body: ["Computer Science engineer, minoring in Natural Language Processing and Machine Learning.", "Recipient of the Best B-Tech Project award."],
+          stats: [["9.13/10", "CGPA, dept. rank 5 of 75+"], ["1 of 6", "Best B-Tech Project (300+)"], ["70+", "team led as E-Cell President"]],
+          techniques: ["Graph deep-learning for biomedical relation extraction (ACL)", "Multi-modal video recommendation system (IEEE-IJCNN)", "NLP on Twitter data for published Brexit reports", "Segmentation & targeting for a live marketing project"],
+          tools: ["Python", "PyTorch"] },
+        { logo: "yellow_logo.png", kind: "Experience", name: "Yellow.ai",
+          role: "Associate Product Manager", period: "Jun 2022 – May 2023 · 12 months", lane: "work", start: 2022.42, end: 2023.42,
+          body: ["Product - LLM division, drove development of Dynamic conversation designer"],
+          stats: [["$2M+", "generated from Gen AI features"], ["10+", "enterprise customers onboarded"], ["50%", "faster go-to-market"]],
+          techniques: ["Spearheaded 3+ Gen AI features end to end", "Cost-benefit analysis of 5+ third-party AI models, saving $300K", "A/B testing across 1000+ users, click-through up 40%", "Targeted campaigns with product marketing, sales up 17%"],
+          tools: ["Figma", "Google Analytics", "SQL", "Python"] },
+        { logo: "iimb_logo.png", kind: "Education", name: "IIM Bangalore",
+          role: "MBA, Business Analytics", period: "2023 – 2025 · 2 years", lane: "study", start: 2023.5, end: 2025.5,
+          body: ["MBA with a specialization in Business Analytics."],
+          stats: [["3.59/4", "CGPA, top 10%"], ["2×", "national finalist"], ["70+", "students tutored in Decision Sciences"]],
+          techniques: ["Business Analytics", "Business Strategy", "Operations & Optimization", "Marketing Management"],
+          tools: ["Python", "R", "Excel", "Tableau", "Sawtooth", "Enginius"] },
+        { logo: "bcg_logo.png", kind: "Experience", name: "BCG",
+          role: "Summer Associate", period: "Apr 2024 – May 2024 · 2 months", lane: "work", start: 2024.25, end: 2024.42,
+          body: ["Summer internship on working capital, financial planning and market research for a cement manufacturer."],
+          stats: [["₹44Cr", "repeat purchases cut by 40%"], ["200+", "under-utilized assets found"], ["₹6Cr", "working capital unlocked"]],
+          techniques: ["Centralized inventory pipeline across 5 cement plants", "Spare-inventory and asset utilization analysis", "Liquidation of factory equipment, negotiated with 4 vendors", "Competitive benchmarking and tech-trend research"],
+          tools: ["Excel", "PowerPoint"] },
+        { logo: "bain_logo.png", kind: "Experience", name: "Bain & Company",
+          role: "Sr. Associate Consultant", period: "Jul 2025 – Present", lane: "work", start: 2025.5, end: null,
+          body: ["Management consultant from Bain."],
+          stats: [["₹120K Cr+", "battery-storage market sized"], ["₹50Cr+", "savings recommended"], ["20%", "COGS saved per unit"]],
+          techniques: ["Market sizing and go-to-market entry strategy", "Cost-lever and capex benchmarking vs peers", "Customer segmentation into sales archetypes", "Org design and governance for a ₹5K Cr firm"],
+          tools: ["Excel", "PowerPoint", "Power BI", "Tableau"] },
+    ];
+    // timeline axis (build-time "now" is used for the open-ended Bain bar)
+    const now = new Date(), nowY = now.getFullYear() + now.getMonth() / 12;
+    const axisStart = 2018, axisEnd = Math.max(2027, Math.ceil(nowY));
+    const pct = function (y) { return ((y - axisStart) / (axisEnd - axisStart) * 100).toFixed(2); };
+%>
+<section id="about-me" class="about-section min-vh-100 d-flex align-items-center">
+    <div class="about-bg" aria-hidden="true">
+        <% [[8,12,26,0],[22,78,14,-4],[40,6,18,-9],[62,90,22,-2],[80,18,12,-6],[90,70,16,-11],[14,46,10,-7],[70,48,12,-3]].forEach(function(d){ %>
+            <span class="float-dot" style="top:<%= d[0] %>%;left:<%= d[1] %>%;--s:<%= d[2] %>px;animation-delay:<%= d[3] %>s"></span>
+        <% }) %>
+    </div>
+    <div class="container-fluid position-relative">
+        <div class="container px-lg-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 d-flex flex-column align-items-center">
+                    <div class="wheel" id="wheel">
+                        <div class="wheel-halo wheel-halo--1"></div>
+                        <div class="wheel-halo wheel-halo--2"></div>
+                        <div class="wheel-orbit"></div>
+                        <div class="wheel-track"></div>
+                        <div class="wheel-rotor" id="wheel-rotor">
+                            <% aboutItems.forEach(function(it, i){ %><span class="wheel-spoke" style="--a:<%= i * 360 / aboutItems.length %>deg"></span><% }) %>
+                        </div>
+                        <span class="wheel-marker"></span>
+                        <div class="wheel-hub">
+                            <button type="button" class="wheel-toggle" id="wheel-toggle" aria-label="Pause animation">
+                                <svg class="i-pause" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+                                <svg class="i-play" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                            </button>
+                        </div>
+                        <% aboutItems.forEach(function(it, i){ %>
+                            <button type="button" class="wheel-icon" data-index="<%= i %>" aria-label="<%= it.name %>">
+                                <img src="./images/logos/<%= it.logo %>" alt="<%= it.name %>">
+                            </button>
+                        <% }) %>
+                    </div>
+                    <p class="wheel-hint">Click a logo to explore</p>
+                    <div class="timeline" aria-label="Timeline">
+                        <div class="tl-track">
+                            <% aboutItems.forEach(function(it, i){ var end = it.end === null ? nowY : it.end; %>
+                                <button type="button" class="tl-bar tl-bar--<%= it.lane %>" data-index="<%= i %>" style="left:<%= pct(it.start) %>%;width:<%= (pct(end) - pct(it.start)).toFixed(2) %>%" title="<%= it.name %> · <%= it.period %>" aria-label="<%= it.name %>, <%= it.period %>"></button>
+                            <% }) %>
+                        </div>
+                        <div class="tl-axis">
+                            <% for (var y = axisStart; y <= axisEnd; y += 2) { %><span style="left:<%= pct(y) %>%"><%= y %></span><% } %>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-flex flex-column justify-content-center px-lg-5">
+                    <h1 class="about-heading border-bottom">My Journey</h1>
+                    <div class="about-panels" id="about-panels" aria-live="polite">
+                        <% aboutItems.forEach(function(it, i){ %>
+                            <article class="about-panel<%= i === 0 ? ' is-active' : '' %>" data-index="<%= i %>">
+                                <div class="about-top">
+                                    <div>
+                                        <span class="about-kicker"><%= it.kind %></span>
+                                        <h2 class="about-title"><%= it.name %></h2>
+                                        <p class="about-meta"><%= it.role %></p>
+                                    </div>
+                                    <span class="about-period"><%= it.period %></span>
+                                </div>
+                                <% it.body.forEach(function(t){ %><p class="text-start"><%= t %></p><% }) %>
+                                <ul class="about-stats">
+                                    <% it.stats.forEach(function(st){ %><li><strong><%= st[0] %></strong><span><%= st[1] %></span></li><% }) %>
+                                </ul>
+                                <span class="about-kicker">Techniques</span>
+                                <ul class="about-techniques">
+                                    <% it.techniques.forEach(function(t){ %><li><%= t %></li><% }) %>
+                                </ul>
+                                <span class="about-kicker">Tools</span>
+                                <div class="about-tools">
+                                    <% it.tools.forEach(function(t){ %><span class="tool" title="<%= t %>"><img src="./images/cv/logos/<%= encodeURI(toolLogos[t]) %>" alt="<%= t %>"></span><% }) %>
+                                </div>
+                            </article>
+                        <% }) %>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 d-flex justify-content-center align-items-center flex-column px-5 py-5">
-                <h1 class="text-large border-bottom">About Me</h1>
-                <p class="text-start">I am an MBA from IIM Bangalore with specialization in Business Analytics, prior to which I was a Computer Science engineer from IIT Patna, minoring in Natural Language Processing and Machine Learning</p>
-                <p class="text-start">My core competencies lie in Business Analytics, Operations & Optimization, Business Strategy, Project management, Marketing Management, Financial Management & Risk analytics</p>
-                <p class="text-start">In my free time, I enjoy reading about the latest trends in technology, contributing to open-source projects, and engaging with the tech community. I am excited about the future and look forward to making a meaningful impact in the world of technology.</p>
-            </div>
         </div>
     </div>
-</div>
 </section>
 
 <section id="accolades">
@@ -134,7 +231,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const typewriterText = document.getElementById("typewriter-text");
-        const roles = ["Business Analyst", "Product Manager", "Management Consultant", "AI Engineer", "Full Stack Developer"];
+        const roles = ["Strategy & Operations", "Management Consultant", "Business Analyst", "Product Manager", "AI Engineer", "Full Stack Developer"];
         let currentPhraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -164,4 +261,78 @@
 
         type();
     });
+</script>
+
+<script>
+    (function () {
+        const wheel = document.getElementById("wheel");
+        if (!wheel) return;
+        const icons = Array.from(wheel.querySelectorAll(".wheel-icon"));
+        const panels = Array.from(document.querySelectorAll(".about-panel"));
+        const rotor = document.getElementById("wheel-rotor");
+        const toggle = document.getElementById("wheel-toggle");
+        const bars = Array.from(document.querySelectorAll(".tl-bar"));
+        const N = icons.length, STEP = 360 / N, INTERVAL = 4500;
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        let rot = 0;        // total wheel rotation in degrees (kept unbounded so transitions never jump)
+        let active = 0;     // index of the icon sitting at 3 o'clock
+        let playing = !reduceMotion;
+        let timer = null;
+
+        function render() {
+            icons.forEach(function (el, i) {
+                const a = i * STEP + rot;
+                const on = i === active;
+                // spin out to the rim, then counter-rotate so the logo stays upright
+                el.style.transform = "rotate(" + a + "deg) translateX(var(--r)) rotate(" + -a + "deg) scale(" + (on ? 1.3 : 1) + ")";
+                el.classList.toggle("is-active", on);
+                el.setAttribute("aria-current", on ? "true" : "false");
+            });
+            rotor.style.transform = "rotate(" + rot + "deg)";
+            bars.forEach(function (b) { b.classList.toggle("is-active", Number(b.dataset.index) === active); });
+            panels.forEach(function (p, i) {
+                p.classList.toggle("is-active", i === active);
+                p.setAttribute("aria-hidden", i === active ? "false" : "true");
+            });
+        }
+
+        function goTo(i) {
+            // shortest turn that brings icon i to 3 o'clock (angle 0)
+            let d = -((i * STEP + rot) % 360);
+            if (d > 180) d -= 360;
+            if (d <= -180) d += 360;
+            rot += d;
+            active = i;
+            render();
+        }
+
+        function next() { goTo((active - 1 + N) % N); }
+
+        function setPlaying(value) {
+            playing = value;
+            clearInterval(timer);
+            if (playing) timer = setInterval(next, INTERVAL);
+            toggle.classList.toggle("is-paused", !playing);
+            toggle.setAttribute("aria-label", playing ? "Pause animation" : "Play animation");
+        }
+
+        icons.forEach(function (el, i) {
+            el.addEventListener("click", function () {
+                setPlaying(false);   // someone chose an icon: stay put so they can read
+                goTo(i);
+            });
+        });
+        bars.forEach(function (b) {
+            b.addEventListener("click", function () {
+                setPlaying(false);
+                goTo(Number(b.dataset.index));
+            });
+        });
+        toggle.addEventListener("click", function () { setPlaying(!playing); });
+
+        render();
+        requestAnimationFrame(function () { wheel.classList.add("ready"); });  // enable transitions after first paint
+        setPlaying(playing);
+    })();
 </script>
